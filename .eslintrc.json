@@ -1,0 +1,11 @@
+{
+  "extends": ["react-moonstone"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.eslint.json"
+  },
+  "rules": {
+    "jsx-a11y/anchor-is-valid": "warn",
+    "@typescript-eslint/no-use-before-define": 0
+  }
+}
