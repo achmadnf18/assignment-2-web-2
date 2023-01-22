@@ -43,9 +43,7 @@ export function Header() {
   }, []);
 
   const handleLogout = () => {
-    instance.logoutRedirect({
-      postLogoutRedirectUri: '/',
-    });
+    instance.logout();
     dispatch(logout());
   };
   return (

@@ -17,15 +17,7 @@ export function SocialAuth() {
   const loginHint = searchParams.get('login_hint');
 
   useEffect(() => {
-    if (loginHint) {
-      loginRequest.extraQueryParameters = {
-        login_hint: loginHint,
-      };
-      instance.loginRedirect(loginRequest).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      });
-    }
+    if (loginHint) setTimeout(() => handleLogin(), 100);
   }, [loginHint]);
 
   useEffect(() => {
@@ -41,6 +33,18 @@ export function SocialAuth() {
     }
   }, [accounts]);
 
+  const handleLogin = () => {
+    if (loginHint) {
+      loginRequest.extraQueryParameters = {
+        login_hint: loginHint,
+      };
+    }
+    instance.loginRedirect(loginRequest).catch((error) => {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    });
+  };
+
   return (
     <Stack direction="row" spacing={2}>
       <IconButton
@@ -50,12 +54,7 @@ export function SocialAuth() {
           padding: '0.5675rem',
           flex: 1,
         }}
-        onClick={() => {
-          instance.loginRedirect(loginRequest).catch((error) => {
-            // eslint-disable-next-line no-console
-            console.log(error);
-          });
-        }}
+        onClick={() => handleLogin()}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
           <Icon icon="vscode-icons:file-type-azure" color="#DF3E30" width={33} height={33} />
